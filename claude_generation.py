@@ -15,7 +15,7 @@ def generate_question_requests(topic, topic_id, q_context , num_questions = 10
     """
      #random sampling from max_tokens
 
-    client = anthropic.Anthropic(api_key=apikey)
+    #client = anthropic.Anthropic(api_key=apikey)
 
     reqlist=[]
 
