@@ -42,4 +42,6 @@ def generate_question_requests(topic, topic_id, q_context , num_questions = 10
             )
         )
 
+    return reqlist
+
 
