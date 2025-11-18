@@ -26,7 +26,7 @@ def generate_question_requests(topic, topic_id, q_context , num_questions = 10
             custom_id="topic"+topic_id+"_q"+str(ii),
                 params=MessageCreateParamsNonStreaming(
                     model="claude-sonnet-4-5",
-                    max_tokens=max_tokens,
+                    max_tokens=max_tokens[ii],
                     system=[
                               {
                                 "type": "text",
@@ -36,7 +36,7 @@ def generate_question_requests(topic, topic_id, q_context , num_questions = 10
                             ],
                     messages=[{
                         "role": "user",
-                        "content": "Generate a Yahoo! Answer about "+topic+". Do not provide que question nor prepend with Answer:",
+                        "content": "Generate a Yahoo! Answer about "+topic+". Do not provide que question nor prepend with Answer: or with a summary of the context. Simply provide an answer.",
                     }]
                 )
             )
