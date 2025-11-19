@@ -26,7 +26,7 @@ def generate_question_requests(topic, topic_id, q_context , num_questions = 10
             custom_id="topic"+topic_id+"_q"+str(ii),
                 params=MessageCreateParamsNonStreaming(
                     model="claude-sonnet-4-5",
-                    max_tokens=max_tokens[ii],
+                    max_tokens=max_tokens,
                     system=[
                               {
                                 "type": "text",
