@@ -10,7 +10,6 @@ Labeled examples are often hard to come by for rare categories. Here, Claude is 
 - **Architecture:** DistilBERT vs. RoBERTa
 - **Fine-tuning scope:** all weights vs. classification head only
 - **Training set size:** number of real samples per class
-- **Data augmentation:** random token masking applied to synthetic data (exploratory)
 
 ## Data
 
@@ -41,27 +40,17 @@ Real training sets are small (1,000 samples per class by default), with stratifi
 - **Fine-tuning modes:** all weights, or head only (encoder frozen, classifier trainable).
 - **Tasks:** a 5-class problem (Haiku vs. real data) and a 2-class problem on topics 1 and 2 (Sonnet vs. real data).
 - **Metrics:** accuracy and confusion matrix (via `evaluate`) on held-out real test data.
-- **Augmentation (exploratory):** random token masking (30%) of synthetic training examples with a custom PyTorch training loop.
 
 ## Preliminary results
 
 Test accuracy (%) from the notebook's figures. Chance is 20% for 5 classes.
 
-**Fully fine-tuned, 2-class setting**
+<img width="615" height="466" alt="image" src="https://github.com/user-attachments/assets/24d8041b-8d8a-4e8b-83d4-104919bdd27b" />
 
-| Model | Real data | Sonnet data | Haiku data |
-|-------|-----------|-------------|------------|
-| DistilBERT | 88.9 | 81.5 | 83.0 |
-| RoBERTa | 88.6 | 82.8 | 82.3 |
+<img width="614" height="436" alt="image" src="https://github.com/user-attachments/assets/60d5dee6-7738-4e18-a73f-387c16614cc4" />
 
-**Head-only, 2-class setting**
+<img width="466" height="331" alt="image" src="https://github.com/user-attachments/assets/9816616f-c1ec-4019-b123-f99edd58573b" />
 
-| Model | Real data | Sonnet data | Haiku data |
-|-------|-----------|-------------|------------|
-| DistilBERT | 78.5 | 79.3 | 75.3 |
-| RoBERTa | 78.9 | 75.4 | 80.0 |
-
-**5-class setting:** real data reached 64.1% (DistilBERT) and 66.5% (RoBERTa) with all weights tuned, versus 56.0% and 55.6% for Haiku-generated data. Head-only training was weaker across the board (43-51%).
 
 Takeaway so far: with full fine-tuning, models trained on real data outperform those trained on synthetic data, though Claude-generated data gets reasonably close and is competitive when only the head is trained. A sample-size experiment on real data shows accuracy rising with the number of training samples per class.
 
@@ -71,8 +60,6 @@ Takeaway so far: with full fine-tuning, models trained on real data outperform t
 |------|-------------|
 | `DLProject.ipynb` | Main notebook (built for Google Colab): data loading, synthetic data generation, tokenization, training, evaluation, figures |
 | `claude_generation.py` | Helper that builds batched requests for generating synthetic answers with Claude |
-| `main.py` | Early script for exploring the data and tokenizer length distribution |
-| `test.py` | Scratch file |
 
 ## Getting started
 
